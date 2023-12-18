@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <title>React Router</title>
     <script type="text/javascript">
-      var pathSegmentsToKeep = 1;
+      var pathSegmentsToKeep = 1; //1 for gh pages | 0 for custom domain
 
       var l = window.location;
       l.replace(
@@ -17,7 +17,12 @@
             .slice(0, 1 + pathSegmentsToKeep)
             .join("/") +
           "/?/" +
-          l.pathname.slice(1).split("/").slice(pathSegmentsToKeep).join("/").replace(/&/g, "~and~") +
+          l.pathname
+            .slice(1)
+            .split("/")
+            .slice(pathSegmentsToKeep)
+            .join("/")
+            .replace(/&/g, "~and~") +
           (l.search ? "&" + l.search.slice(1).replace(/&/g, "~and~") : "") +
           l.hash
       );
