@@ -12,6 +12,7 @@
   border-radius: 8px;
   cursor: pointer;
   border: 0px;
+  z-index: 1;
 }
 
 .button:hover {

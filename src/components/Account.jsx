@@ -17,7 +17,7 @@ export default function Account() {
       <span className="material-icons-outlined" title="Logout" onClick={logout}> logout </span>
       </>) : (      
       <>
-      <Link to="signup">Signup</Link>
+      <Link to="/quiz-app/signup">Signup</Link>
       <Link to="/quiz-app/login">Login</Link>
       </>
       )}

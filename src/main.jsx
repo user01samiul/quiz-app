@@ -1,16 +1,16 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import "./styles/App.css";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements, } from 'react-router-dom';
 import Layout from "./components/Layout";
 import Home from "./components/pages/Home";
-import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements, } from 'react-router-dom';
 import Login from "./components/pages/Login";
-import Signup from './components/pages/Signup.jsx';
 import Quiz from './components/pages/Quiz.jsx';
 import Result from './components/pages/Result.jsx';
+import Signup from './components/pages/Signup.jsx';
+import "./styles/App.css";
 
+import PrivateRoute from "./components/PrivateRoute.jsx";
 import PublicRoute from './components/PublicRoute.jsx';
-import PrivateRoute from "./components/PrivateRoute.jsx"
 
 
 const router = createBrowserRouter(
@@ -27,7 +27,8 @@ const router = createBrowserRouter(
           <Route  path="login" 
           element={<PublicRoute>  <Login/>  </PublicRoute>} 
           />
-          <Route  path="quiz" 
+          {/* now page must have something after 'quiz/' | received it from Videos.jsx - check it out */}
+          <Route  path="quiz/:videoId"   
           element={<PrivateRoute>  <Quiz/>  </PrivateRoute>} 
           />
           <Route  path="result" 
