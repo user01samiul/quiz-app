@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 
 
-export default function ProgressBar({setCurrentQuestion}) {
+export default function ProgressBar({currentQuestion, setCurrentQuestion}) {
 
 
   function nextBtn(){
@@ -15,14 +15,18 @@ export default function ProgressBar({setCurrentQuestion}) {
   }
   function prevBtn(){
     setCurrentQuestion((prev)=>{
-      return prev-1;
+       if (prev>0) {
+        return prev-1;
+       } else{
+        return prev
+       }
     })
   }
 
-
+  
   return (
     <div className={classes.progressBar}>
-      <Button className={classes.backButton}  onClick={prevBtn} >
+      <Button className={currentQuestion>0? classes.backBtn : classes.backBtnInvisible}  onClick={prevBtn} >
         <span className="material-icons-outlined"> arrow_back </span>
       </Button>
       <div className={classes.rangeArea}>

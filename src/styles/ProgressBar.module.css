@@ -16,7 +16,7 @@
   gap: 20px;
 }
 
-.progressBar .backButton {
+.progressBar .backBtn {
   width: 50px;
   height: 50px;
   border-radius: 8px;
@@ -28,8 +28,21 @@
   cursor: pointer;
 }
 
-.progressBar .backButton:hover {
+.progressBar .backBtn:hover {
   background: #47f5953a;
+}
+
+.backBtnInvisible{
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  margin-left: 10px;
+  background: #47f5901c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: default;
+  opacity: 0;
 }
 
 @media only screen and (max-width: 1024px) {
