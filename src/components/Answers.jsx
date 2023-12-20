@@ -1,48 +1,38 @@
 import { useState, useEffect } from "react";
 import classes from "../styles/Answers.module.css";
 import Checkbox from "./Checkbox";
-import _ from 'lodash';
+// import _ from 'lodash';
 
 
 
-export default function Answers({questions,currentQuestion}) {
+export default function Answers({onePageQuestion}) {
 
   const [useOptions, setUseOptions] = useState([])
-
-    const onePageQuestion = questions[currentQuestion]
-    const [isPresent, setIsPresent] = useState(false)
-    const cloned = onePageQuestion.options;
+  const cloned = onePageQuestion && onePageQuestion.options;
     
 
   useEffect(()=>{   //adding false to the cloned object
-    setIsPresent(false)
-    questions.length>0 && setUseOptions(cloned.map((object)=>{
+    onePageQuestion && setUseOptions(cloned.map((object)=>{
       return {...object, isChecked : false}
     }))
-    setIsPresent(true)
-
-  },[cloned, questions.length])
+  },[cloned, onePageQuestion])
 
   const handleChange = (e,id)=>{
       setUseOptions((prevData)=>{
         return prevData.map((object,index)=>{
-          return id===index? {...object, isChecked : e.target.checked} : object
+          return id===index? {...object, isChecked : e.target.checked} : object ;
         })
       })
   }
 
-
-    
-    console.log(useOptions)
-
-    const elements = isPresent ? useOptions.map((option,index)=>{
+    const elements = onePageQuestion && useOptions.map((option,index)=>{
       return <Checkbox  className={classes.answer} text={option.title} key={index} 
       checked={option.isChecked}
       onChange={(e)=>handleChange(e,index)}
       />
-    }) : <div>Aquiring data...</div>
+    }) 
 
-  
+
     return (
       <div className={classes.answers}>
         {elements}
@@ -50,4 +40,3 @@ export default function Answers({questions,currentQuestion}) {
     );
   }
   
-// }
