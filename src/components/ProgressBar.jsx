@@ -5,9 +5,10 @@ import { useEffect, useState } from "react";
 
 
 
-export default function ProgressBar({currentQuestion, setCurrentQuestion}) {
+export default function ProgressBar({currentQuestion, setCurrentQuestion, length, submit}) {
 
 
+  //next & prev button
   function nextBtn(){
     setCurrentQuestion((prev)=> {
      return prev+1;
@@ -23,7 +24,10 @@ export default function ProgressBar({currentQuestion, setCurrentQuestion}) {
     })
   }
 
-  
+  //percentage calculation
+  const percentage = length>0 && ((currentQuestion+1) / length ) *100
+
+
   return (
     <div className={classes.progressBar}>
       <Button className={currentQuestion>0? classes.backBtn : classes.backBtnInvisible}  onClick={prevBtn} >
@@ -32,15 +36,13 @@ export default function ProgressBar({currentQuestion, setCurrentQuestion}) {
       <div className={classes.rangeArea}>
         <div className={classes.tooltip}>24% Cimplete!</div>
         <div className={classes.rangeBody}>
-        <div className={classes.progress} style={{ width: "20%" }}></div>
+        <div className={classes.progress} style={{ width: `${percentage}%` }}></div>
       </div>
       </div>
-      <Link >
-        <Button  className={classes.next} onClick={nextBtn} >
-          <span>Next Question</span>
+        <Button  className={classes.next} onClick={percentage===100? submit : nextBtn} >
+          <span>{percentage !== 100 ? "Next Question" : "Submit"}</span>
           <span className="material-icons-outlined"> arrow_forward </span>
         </Button>
-      </Link>
     </div>
   );
 }

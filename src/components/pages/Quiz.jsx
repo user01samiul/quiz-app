@@ -4,13 +4,35 @@ import MiniPlayer from "../MiniPlayer";
 import ProgressBar from "../ProgressBar";
 import useQuestions from "../../hooks/useQuestions";
 import { useState, useEffect } from "react";
+import { useAuth } from './../../contexts/AuthContext';
+import { getDatabase, ref, set } from "firebase/database";
 
 
 export default function Quiz() {
+  const {currentUser} = useAuth()
   const {videoId} = useParams()        //returns an object
   const {loading, error, questions} = useQuestions(videoId);
   const [currentQuestion, setCurrentQuestion] = useState(0);   
   const onePageQuestion = questions[currentQuestion]
+  const length = questions.length
+
+  const [useOptions, setUseOptions] = useState([])
+  const navigate = useNavigate()
+
+
+  //submit answers to firebase database ()creating new node and navigate to result page
+  async function submit(){
+    const {uid} = currentUser;
+
+    const db = getDatabase()
+    const resultRef = ref(db, `result/${uid}`);
+
+    await set(resultRef, {      //
+      [videoId] : useOptions,          //[id] = dynamic variable
+    });
+
+    navigate(`/quiz-app/result/${videoId}`, {state : useOptions})
+  }
 
   return (
     <>
@@ -20,9 +42,12 @@ export default function Quiz() {
               <>
               <h1>{questions[currentQuestion].title}</h1>
               <h4 >Question can have multiple answers</h4>
-              <Answers questions={questions} onePageQuestion={onePageQuestion}/>
+              <Answers questions={questions} onePageQuestion={onePageQuestion}
+              useOptions={useOptions} setUseOptions={setUseOptions}
+              currentQuestion={currentQuestion}
+              />
               <ProgressBar setCurrentQuestion={setCurrentQuestion} length={length}
-              currentQuestion={currentQuestion} />
+              currentQuestion={currentQuestion} submit={submit} />
               <MiniPlayer />
               </>)
       }

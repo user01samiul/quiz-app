@@ -31,7 +31,7 @@ const router = createBrowserRouter(
           <Route  path="quiz/:videoId"   
           element={<PrivateRoute>  <Quiz/>  </PrivateRoute>} 
           />
-          <Route  path="result" 
+          <Route  path="result/:videoId" 
           element={<PrivateRoute>  <Result/>  </PrivateRoute>} 
           />
     </Route>
