@@ -31,7 +31,7 @@ export default function Quiz() {
       [videoId] : useOptions,          //[id] = dynamic variable
     });
 
-    navigate(`/quiz-app/result/${videoId}`, {state : useOptions})
+    navigate(`/quiz-app/result/${videoId}`, {state : useOptions}) //check the navigate syntax | sent state to useLocation()
   }
 
   return (

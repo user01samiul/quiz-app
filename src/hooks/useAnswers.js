@@ -2,19 +2,18 @@
 import { useEffect, useState } from "react";
 import { get, getDatabase, orderByKey, query, ref } from "firebase/database";
 
-export default function useQuestions(videoId) {
+export default function useAnswers(videoId) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const [questions, setQuestions] = useState([]);
-  const [hasMore, setHasMore] = useState(true);
+  const [answers, setAnswers] = useState([]);
 
   useEffect(() => {
     async function fetchQuestions() {
       const db = getDatabase();
       //we can hit anynode in firebase by using path
-      const questionsRef = ref(db, "quiz/" + videoId + "/questions");
-      const questionQuery = query(
-        questionsRef,
+      const answersRef = ref(db, "answers/" + videoId + "/questions");
+      const answerQuery = query(
+        answersRef,
         orderByKey()
         //we'll get all the questions so no need startAt() & limitToFirst()
       );
@@ -22,12 +21,12 @@ export default function useQuestions(videoId) {
       try {
         setError(false);
         setLoading(true);
-        //request data from firebase
-        const snapShot = await get(questionQuery); //fetching is an async process
+        //requesting data from firebase
+        const snapShot = await get(answerQuery); //fetching is an async process
         setLoading(false);
 
         if (snapShot.exists()) {
-          setQuestions((prev) => {
+          setAnswers((prev) => {
             return [...prev, ...Object.values(snapShot.val())];
           });
         } else {
@@ -46,7 +45,6 @@ export default function useQuestions(videoId) {
   return {
     loading,
     error,
-    questions,
-    hasMore,
+    answers,
   };
 }

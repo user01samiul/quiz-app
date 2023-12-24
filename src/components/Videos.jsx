@@ -14,7 +14,7 @@ export default function Videos() {
     <div>
       {videos.length> 0 && (
         //Infitite component npm package - https://www.npmjs.com/package/react-infinite-scroll-component
-      <InfiniteScroll dataLength={videos.length} next={()=> setPage(page + 8)} hasMore={hasMore}>        {/*wrapped with infinite scroll*/}
+      <InfiniteScroll dataLength={videos.length} next={()=> setPage(page + 6)} hasMore={hasMore}>        {/*wrapped with infinite scroll*/}
               {videos.map((video)=>{
         return (
           <Link to={`/quiz-app/quiz/${video.youtubeID}`} key={video.youtubeID} >
