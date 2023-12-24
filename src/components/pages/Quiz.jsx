@@ -42,9 +42,11 @@ export default function Quiz() {
               <>
               <h1>{questions[currentQuestion].title}</h1>
               <h4 >Question can have multiple answers</h4>
-              <Answers questions={questions} onePageQuestion={onePageQuestion}
-              useOptions={useOptions} setUseOptions={setUseOptions}
+              <Answers questions={questions} 
+              useOptions={useOptions} 
+              setUseOptions={setUseOptions}
               currentQuestion={currentQuestion}
+              input = {true}
               />
               <ProgressBar setCurrentQuestion={setCurrentQuestion} length={length}
               currentQuestion={currentQuestion} submit={submit} />

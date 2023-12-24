@@ -10,7 +10,7 @@ export default function Result() {
   const {state} = useLocation()   //received state from useLocation()
   const {loading, error, answers} = useAnswers(videoId)
   const qna = state
-  // console.log(state)
+
 
 
   // calculating score
@@ -27,7 +27,8 @@ export default function Result() {
     //setting user answers array | if isChecked === true we'll push the objects index
           if(qna[index1].options[index2].isChecked === true) {
           userAnswers.push(index2)
-          // object.checked = true;
+          object.isChecked = true;    //set new object key and property | pushed user answers to 'answers object'
+
         }
       })
       //lodash function to check if both arrays are structurally same (no matter how nested)
@@ -45,11 +46,12 @@ export default function Result() {
   }   //function end
 
   const userScore = calculateScore()
+    console.log(answers)
   
   return (
     <>
       <Summary userScore={userScore}/>
-      <Analysis />
+      <Analysis answers={answers} videoId={videoId}/>
     </>
   );
 }

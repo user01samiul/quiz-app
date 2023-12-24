@@ -9,6 +9,9 @@ export default function Answers({
   currentQuestion,
   useOptions,
   setUseOptions,
+  input,
+  options,
+  answers,
 }) {
   const [overFlow, setOverFlow] = useState(false);
 
@@ -61,8 +64,10 @@ export default function Answers({
 
   // console.log(useOptions);
 
-  const elements =
-    useOptions && useOptions.length > 0 && !overFlow && (
+  const elements = input
+    ? useOptions &&
+      useOptions.length > 0 &&
+      !overFlow &&
       useOptions[currentQuestion].options.map((option, index) => {
         return (
           <Checkbox
@@ -74,7 +79,25 @@ export default function Answers({
           />
         );
       })
-    ) 
+    : options &&
+      options.length > 0 &&
+      options.map((option, index) => {
+        return (
+          <Checkbox
+            className={`${classes.answer} ${
+              option.correct          //nested ternary
+                ? classes.correct
+                : option.isChecked !== option.correct
+                ? classes.wrong
+                : null
+            }`}
+            text={option.title}
+            key={index}
+            defaultChecked={option.isChecked} //user Checked option from answers
+            disabled
+          />
+        );
+      });
 
   return <div className={classes.answers}>{elements}</div>;
 }
