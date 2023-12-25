@@ -54,7 +54,7 @@ export default function Quiz() {
               </>)
       }
       {/* { !onePageQuestion && currentQuestion>0 && <Navigate to="/quiz-app/result"/>} */}
-      {questions.length===0 && <div>No question available for this video.</div>}
+      {!loading && questions.length===0 && <div>No question available for this video.</div>}
       
 
     </>
