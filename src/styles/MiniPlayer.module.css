@@ -10,15 +10,18 @@
   border-radius: 5px;
 }
 
-.miniPlayer img {
+/* .miniPlayer .ReactPlayer {
   width: 300px;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
+  /* position: absolute; */
+  /* aspect-ratio: 16/9; */
+  /* object-fit: cover;
   animation: miniplayerAnim 0.3s ease forwards;
-}
+} */ 
 
 .miniPlayer .open {
   display: none;
+  position: relative;
+  left: 6.5px;
 }
 
 .miniPlayer .close {
@@ -75,7 +78,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 14px;
   cursor: pointer;
   user-select: none;
 }

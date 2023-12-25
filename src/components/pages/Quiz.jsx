@@ -50,10 +50,11 @@ export default function Quiz() {
               />
               <ProgressBar setCurrentQuestion={setCurrentQuestion} length={length}
               currentQuestion={currentQuestion} submit={submit} />
-              <MiniPlayer />
+              <MiniPlayer id={videoId} title={questions[currentQuestion].title}/>
               </>)
       }
-      { !onePageQuestion && currentQuestion>0 && <Navigate to="/quiz-app/result"/>}
+      {/* { !onePageQuestion && currentQuestion>0 && <Navigate to="/quiz-app/result"/>} */}
+      {questions.length===0 && <div>No question available for this video.</div>}
       
 
     </>
