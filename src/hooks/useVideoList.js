@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 
 //database functions
 import {
-  getDatabase,
   get,
+  getDatabase,
   limitToFirst,
   orderByKey,
   query,
@@ -32,13 +32,13 @@ export default function useVideoList(page) {
     async function fetchVideos() {
       //database related works
       const db = getDatabase();
-      const videosRef = ref(db, "videos"); //videos node 
+      const videosRef = ref(db, "videos"); //videos node
       //we can hit anynode in firebase by using path | learn in useQuestions.js hook ***
       const videoQuery = query(
         videosRef,
         orderByKey(),
-        startAt("" + page),   //takes string
-        limitToFirst(6)       //takes number
+        startAt("" + page), //takes string
+        limitToFirst(6) //takes number
       ); //node ref, how will i get data from videos (according to order), start getting data from(string), get first 6 from starting
 
       //but this will receive data only one time | we want to continue to get data while scrolling
@@ -53,7 +53,9 @@ export default function useVideoList(page) {
         if (snapShot.exists()) {
           //checking if data exists | exists() is a method of get()
           setVideos((prev) => {
-            return [...prev, ...Object.values(snapShot.val())]; //converting object values into array and destructured | videoQuery values are in snapShot.val()
+            return [...prev, ...Object.values(snapShot.val())]; //converting object 'values' into array and spreaded | videoQuery values are in snapShot.val()
+            /*here snapShot.val() returns an array of obj. as array is a special type of obj. we got the 
+            values(objects) from the array's key value pair using Object.values(object/array) */
           });
         } else {
           setHasMore(false);

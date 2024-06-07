@@ -1,6 +1,6 @@
 //custom hook
 import { useEffect, useState } from "react";
-import { get, getDatabase, orderByKey, query, ref } from "firebase/database";
+import { getDatabase, get, orderByKey, query, ref } from "firebase/database";
 
 export default function useQuestions(videoId) {
   const [loading, setLoading] = useState(true);

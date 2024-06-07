@@ -13,10 +13,10 @@
 /* .miniPlayer .ReactPlayer {
   width: 300px;
   /* position: absolute; */
-  /* aspect-ratio: 16/9; */
-  /* object-fit: cover;
+/* aspect-ratio: 16/9; */
+/* object-fit: cover;
   animation: miniplayerAnim 0.3s ease forwards;
-} */ 
+} */
 
 .miniPlayer .open {
   display: none;

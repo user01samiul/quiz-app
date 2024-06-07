@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import classes from "../../styles/Login.module.css";
 import Button from "../Button";
@@ -7,8 +7,8 @@ import Illustration from "../Illustration";
 import TextInput from "../TextInput";
 
 //for auth
-import {useAuth} from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 
 export default function Signup() {
 
@@ -28,7 +28,7 @@ export default function Signup() {
         if(password.length<6) throw "incorrect password"
         setLoading(true)
         await login(email, password)
-        navigate('/quiz-app')           //navigate
+        navigate('/')           //navigate
       } catch (error) {
         console.log(error)
         setLoading(false)

@@ -17,7 +17,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <>
     {/* --------------------***Page with Layout***------------------ */}
-    <Route path='/quiz-app' element={<Layout/>}>
+    <Route path='/' element={<Layout/>}>
           <Route  path="" 
           element={<Home/>} 
           />
@@ -37,9 +37,9 @@ const router = createBrowserRouter(
     </Route>
     </>
   ),
-  {
-      base: '/quiz-app' // Add the base property here else wont work
-  }
+  // {
+  //     base: '/quiz-app' // Add the base property here else wont work
+  // }
 );
 
 ReactDOM.createRoot(document.getElementById('root')).render(

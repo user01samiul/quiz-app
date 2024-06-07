@@ -35,7 +35,7 @@ export default function Signup() {
         setError("")
         setLoading(true)
         await signup(email,username,password)
-        navigate('/quiz-app')
+        navigate('/')
       } catch (error) {
         console.log(error)
         setLoading(false)

@@ -8,7 +8,7 @@ export default function PublicRoute({children}) {
 
   const { currentUser } = useAuth();
   if (currentUser){
-  return  <Navigate to="/quiz-app/" />
+  return  <Navigate to="/" />
    } else{
     return children
    }

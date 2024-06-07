@@ -10,7 +10,7 @@ export default function PrivateRoute({children}) {
     return children
   }
   else{
-    return <Navigate to="/quiz-app/login" />
+    return <Navigate to="/login" />
   }
 }
 

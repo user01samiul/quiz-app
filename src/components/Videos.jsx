@@ -17,7 +17,7 @@ export default function Videos() {
       <InfiniteScroll dataLength={videos.length} next={()=> setPage(page + 6)} hasMore={hasMore}>        {/*wrapped with infinite scroll*/}
               {videos.map((video)=>{
         return (
-          <Link to={`/quiz-app/quiz/${video.youtubeID}`} key={video.youtubeID} >
+          <Link to={`/quiz/${video.youtubeID}`} state={{videoTitle : video.title,}} key={video.youtubeID} >
             <Video 
             title={video.title}
             id={video.youtubeID}
